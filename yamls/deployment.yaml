@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: restapi-deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: restapi
+  template:
+    metadata:
+      labels:
+        app: restapi
+    spec:
+      containers:
+      - name: javiernajera-container
+        image: postgres:latest
+        ports:
+        - containerPort: 5432
+        env:
+        - name: POSTGRES_USER
+          value: javiernajera
+        - name: POSTGRES_PASSWORD
+          value: javiernajera
+        - name: POSTGRES_DB
+          value: javiernajera
